@@ -1,0 +1,30 @@
+energy[g_] := Total[Abs[Eigenvalues[AdjacencyMatrix[g]]]];
+(* For graphs of order 12, we have that borderEnergy is 22 *)
+borderEnergy = energy[CompleteGraph[12]];
+
+filterBE[borderEnergy_, graphsList_, isNumericalComputation_] := 
+    Module[{i, filteredGraphs = {}, currentGraph},
+        For[i = 1, i <= Length[graphsList], i++,
+            currentGraph = graphsList[[i]];
+            currentGraphEnergy = If[isNumericalComputation,
+                (* Here, we check if we are doing numerical or symbolic graph
+                energy computation *)
+                N[energy[currentGraph], 100],
+                Simplify[energy[currentGraph]]
+            ];
+            If[currentGraphEnergy == borderEnergy 
+                && !CompleteGraphQ[currentGraph],
+                AppendTo[filteredGraphs, currentGraph]
+            ]
+        ];
+        Return[filteredGraphs]
+    ];
+    
+(* Load the list of graphs precomputed with precision 10^{-6} *)
+graphs = Import[<path_to_a_filtered_g6_list>];
+
+(* Filter this list by computing the graph energy on 100 decimals *)
+numericalCandidates = filterBE(borderEnergy, graphs, True); 
+
+(* Now, let Mathematica compute the graph energy symbolically *)
+borderEnergeticGraphs = filterBE(borderEnergy, numericalCandidates, False)
