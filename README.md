@@ -7,3 +7,6 @@ The [search_code/java_check](search_code/java_check) subfolder contains the Java
 The [search_code/mathematica_check](search_code/mathematica_check) subfolder contains a single file representing the Wolfram Mathematica script that performs the subsequent candidate graph filtering and verification.
 
 The [search_code/python_check](search_code/python_check) subfolder contains a single Python file that is used to verify the nonexistence of borderenergetic chemical graphs on 20 or 21 vertices.
+
+If you are using the software in your research, please cite this paper:
+- P. Csikvári, I. Damnjanović, M. Milošević, I. Stanković and D. Stevanović, Classification of borderenergetic chemical graphs and borderenergetic graphs of order 12, *Discrete Appl. Math.* **376** (2025), 394–403, [https://doi.org/10.1016/j.dam.2025.07.035](https://doi.org/10.1016/j.dam.2025.07.035).
